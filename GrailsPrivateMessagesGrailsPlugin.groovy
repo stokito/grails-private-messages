@@ -10,10 +10,10 @@ class GrailsPrivateMessagesGrailsPlugin {
 
     // TODO Fill in these fields
     def title = "Grails Private Messages Plugin" // Headline display name of the plugin
-    def author = "Your name"
-    def authorEmail = ""
+    def author = "Sergey Ponomarev"
+    def authorEmail = "stokito@gmail.com"
     def description = '''\
-Brief summary/description of the plugin.
+Simple private messages between users
 '''
 
     // URL to the plugin's documentation
