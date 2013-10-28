@@ -1,6 +1,6 @@
 grails.project.work.dir = 'target'
 
-grails.project.repos.default = 'bintray-stokito-grails-private-messages'
+grails.project.repos.default = 'bintray-stokito-maven-grails-private-messages'
 grails.project.repos.'bintray-stokito-maven-grails-private-messages'.url = 'https://api.bintray.com/maven/stokito/maven/grails-private-messages'
 grails.project.repos.'bintray-stokito-maven-grails-private-messages'.type = 'maven'
 grails.project.repos.'bintray-stokito-maven-grails-private-messages'.portal = 'stokitoBintray'
