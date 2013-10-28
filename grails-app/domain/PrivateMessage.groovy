@@ -23,7 +23,7 @@ class PrivateMessage {
         sender(nullable: false)
         recipient(nullable: false, validator: { value, msg ->
             if (value == msg.sender) {
-                return 'message.recipient.cantSendToItself.error'
+                return 'privateMessage.recipient.cantSendToItself.error'
             }
         })
         subject(nullable: true, blank: false, maxSize: SUBJECT_MAX_SIZE)

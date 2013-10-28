@@ -20,6 +20,8 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
+        compile(':spring-security-core:1.2.7.3')
+        compile(':joda-time:1.4')
         build ':release:3.0.1', ':rest-client-builder:1.0.3', {
             export = false
         }
