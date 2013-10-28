@@ -1,3 +1,6 @@
+import grails.transaction.Transactional
+
+@Transactional(readOnly = true)
 class PrivateMessageController {
     static allowedMethods = [send: 'GET', sendSubmit: 'POST']
     static defaultAction = 'send'
@@ -9,8 +12,9 @@ class PrivateMessageController {
         [message: message]
     }
 
+    @Transactional
     def sendSubmit(PrivateMessage msg) {
-        msg.sender = springSecurityService.currentUser
+        msg.sender = springSecurityService.currentUser.id
         msg.validate()
         if (msg.hasErrors()) {
             chain(action: 'send', model: [message: msg])
@@ -22,16 +26,17 @@ class PrivateMessageController {
     }
 
     def inbox() {
-//        filter.recipient = springSecurityService.currentUser
-        [filter: filter]
+        List<PrivateMessage> messages = messageService.getInboxMessages()
+        [messages: messages]
     }
 
     def sent() {
-//        filter.sender = springSecurityService.currentUser
-        [filter: filter]
+        List<PrivateMessage> messages = messageService.getSentMessages()
+        [messages: messages]
     }
 
 
+    @Transactional
     def show(Long id) {
         PrivateMessage msg = PrivateMessage.get(id)
         if (!msg) {

@@ -1,8 +1,4 @@
-
-
 import grails.transaction.Transactional
-
-import org.springframework.security.core.userdetails.UserDetails
 
 @Transactional(readOnly = true)
 class MessageService {
@@ -14,12 +10,26 @@ class MessageService {
     }
 
     Integer getUnreadMessagesCount() {
-        UserDetails currentUser = springSecurityService.currentUser
+        def currentUser = springSecurityService.currentUser
         if (currentUser) {
             return PrivateMessage.countByIsReadAndRecipient(false, currentUser.id)
         } else {
             return null
         }
     }
+
+    List<PrivateMessage> getInboxMessages() {
+        def currentUser = springSecurityService.currentUser
+        List<PrivateMessage> messages = PrivateMessage.findAllByRecipient(currentUser.id)
+        return messages
+    }
+
+    List<PrivateMessage> getSentMessages() {
+        def currentUser = springSecurityService.currentUser
+        List<PrivateMessage> messages = PrivateMessage.findAllBySender(currentUser.id)
+        return messages
+    }
+
+
 
 }
