@@ -1,9 +1,8 @@
 
 
 import grails.transaction.Transactional
-import groovy.transform.TypeChecked
 
-import static groovy.transform.TypeCheckingMode.SKIP
+import org.springframework.security.core.userdetails.UserDetails
 
 @Transactional(readOnly = true)
 class MessageService {
@@ -14,7 +13,6 @@ class MessageService {
         msg.save(flush: true, failOnError: true)
     }
 
-    @TypeChecked(SKIP)
     Integer getUnreadMessagesCount() {
         UserDetails currentUser = springSecurityService.currentUser
         if (currentUser) {
